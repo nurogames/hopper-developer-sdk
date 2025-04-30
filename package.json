@@ -1,0 +1,29 @@
+{
+  "name": "com.nuro.vrweb.developertk",
+  "version": "0.1.1",
+  "displayName": "VRWeb Developer Toolkit",
+  "description": "Shared package for creating VRWeb content",
+  "unity": "6000.0",
+  "unityRelease": "36f1",
+  "keywords": [
+    "VR",
+    "Platform",
+    "VRWeb"
+  ],
+  "author": {
+    "name": "Nuro",
+    "email": "support@nurogames.com",
+    "url": "https://www.nurogames.com"
+  },
+  "dependencies": {
+    "com.unity.inputsystem": "1.13.1",
+    "com.unity.shadergraph": "12.1.7",
+    "com.unity.xr.management": "4.5.0",
+    "com.unity.xr.interaction.toolkit": "3.1.1",
+    "com.nuro.processes": "1.0.0",
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "com.nuro.vrweb.designertk": "0.1.1"
+  },
+  "type": "library",
+  "hideInEditor": false
+}
