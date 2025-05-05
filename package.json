@@ -22,7 +22,7 @@
     "com.unity.xr.interaction.toolkit": "3.1.1",
     "com.nuro.processes": "1.0.0",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
-    "com.nuro.vrweb.designertk": "https://github.com/nurogames/hopper-designer-sdk.git"
+    "com.nuro.vrweb.designertk": "https://github.com/nurogames/hopper-designer-sdk.git@0.1.1"
   },
   "type": "library",
   "hideInEditor": false
