@@ -94,27 +94,27 @@ namespace VRWeb.Rig
             
             m_ViewModeSwitcher = GetComponent < ViewModeSwitcher >();
 
-            Transform watch = m_LeftHand.transform.Find( "WatchParent" );
-            watch.localPosition = UserPreferences.global.LeftWatchLocalPosition;
-            watch.localRotation = UserPreferences.global.LeftWatchLocalRotation;
-
-            if ( watch.localPosition == Vector3.zero )
-                watch.gameObject.SetActive( false );
-
-            Transform finger = m_LeftHand.transform.Find( "IndexFinger" );
-            finger.localPosition = UserPreferences.global.LeftFingerLocalPosition;
-            finger.localRotation = UserPreferences.global.LeftFingerLocalRotation;
-
-            watch = m_RightHand.transform.Find( "WatchParent" );
-            watch.localPosition = UserPreferences.global.RightWatchLocalPosition;
-            watch.localRotation = UserPreferences.global.RightWatchLocalRotation;
-
-            if ( watch.localPosition == Vector3.zero )
-                watch.gameObject.SetActive( false );
-
-            finger = m_RightHand.transform.Find( "IndexFinger" );
-            finger.localPosition = UserPreferences.global.RightFingerLocalPosition;
-            finger.localRotation = UserPreferences.global.RightFingerLocalRotation;
+            //Transform watch = m_LeftHand.transform.Find( "WatchParent" );
+            //watch.localPosition = UserPreferences.global.LeftWatchLocalPosition;
+            //watch.localRotation = UserPreferences.global.LeftWatchLocalRotation;
+            //
+            //if ( watch.localPosition == Vector3.zero )
+            //    watch.gameObject.SetActive( false );
+            //
+            //Transform finger = m_LeftHand.transform.Find( "IndexFinger" );
+            //finger.localPosition = UserPreferences.global.LeftFingerLocalPosition;
+            //finger.localRotation = UserPreferences.global.LeftFingerLocalRotation;
+            //
+            //watch = m_RightHand.transform.Find( "WatchParent" );
+            //watch.localPosition = UserPreferences.global.RightWatchLocalPosition;
+            //watch.localRotation = UserPreferences.global.RightWatchLocalRotation;
+            //
+            //if ( watch.localPosition == Vector3.zero )
+            //    watch.gameObject.SetActive( false );
+            //
+            //finger = m_RightHand.transform.Find( "IndexFinger" );
+            //finger.localPosition = UserPreferences.global.RightFingerLocalPosition;
+            //finger.localRotation = UserPreferences.global.RightFingerLocalRotation;
 
             m_RigPositioner = GetComponentInChildren < RigPositioner >( true );
             m_AvatarController = GetComponentInChildren < AvatarController >( true );
@@ -275,7 +275,8 @@ namespace VRWeb.Rig
             else
             {
                 AvatarIKController avatarIkController = m_CurrentAvatar.GetComponent < AvatarIKController >();
-                avatarIkController.UnbindAvatarFromIK();
+                if (avatarIkController != null)
+                    avatarIkController.UnbindAvatarFromIK();
             }
 
             m_CurrentAvatar.SetActive( false );

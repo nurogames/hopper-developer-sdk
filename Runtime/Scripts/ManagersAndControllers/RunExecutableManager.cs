@@ -216,9 +216,9 @@ namespace VRWeb.Managers
         private static extern bool ShowWindow( IntPtr hwnd, int nCmdShow );
 
         [DllImport( "user32.dll" )]
-        private static extern IntPtr GetActiveWindow();
+        public static extern IntPtr GetActiveWindow();
 
-        private void SetWindowMode( IntPtr activeWindow, WindowMode windowMode )
+        public static void SetWindowMode( IntPtr activeWindow, WindowMode windowMode )
         {
             ShowWindow( activeWindow, (int)windowMode );
         }

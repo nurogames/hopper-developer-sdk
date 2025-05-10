@@ -1531,7 +1531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_KnobLayerMask:
     serializedVersion: 2
-    m_Bits: 268435456
+    m_Bits: 1
 --- !u!114 &1771568654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1546,7 +1546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SliderLayerMask:
     serializedVersion: 2
-    m_Bits: 268435456
+    m_Bits: 1
 --- !u!114 &1771568655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1561,7 +1561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractableLayerMask:
     serializedVersion: 2
-    m_Bits: 268435456
+    m_Bits: 1
 --- !u!114 &1771568656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1576,7 +1576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ButtonLayerMask:
     serializedVersion: 2
-    m_Bits: 268435456
+    m_Bits: 1
 --- !u!114 &1771568657
 MonoBehaviour:
   m_ObjectHideFlags: 0

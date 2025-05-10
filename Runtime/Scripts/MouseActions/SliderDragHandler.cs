@@ -3,12 +3,15 @@ using System.Collections;
 using UnityEngine;
 using VRWeb.Managers;
 using VRWeb.Rig;
+#if HOPPER
 using WorldBuilder.Core.Components;
+#endif
 
 namespace VRWeb.MouseActions
 {
 	public class SliderDragHandler : HopperManagerMonoBehaviour<SliderDragHandler>
     {
+#if HOPPER
         [SerializeField] private LayerMask m_SliderLayerMask;
 
         private const float MOUSE_TO_SLIDER_RATIO = 100;
@@ -114,6 +117,7 @@ namespace VRWeb.MouseActions
                 HopperRoot.Get<ViewModeSwitcher>().CanMoveToggleButton.isOn = m_CanMoveToggleButtonValue;
             }
         }
+#endif
     }
 }
 #endif

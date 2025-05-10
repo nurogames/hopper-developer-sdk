@@ -32,7 +32,7 @@ namespace VRWeb.Managers
 		private string m_LastVisitedUrl = null;
 
         // Events
-        public event Action<Portal, SceneLoadedEvent.LoadStatus> onPortalLoaded;
+        private event Action<Portal, SceneLoadedEvent.LoadStatus> onPortalLoaded;
 
 		// Getter
 		public List<Portal> LoadedPortals => new List<Portal> (m_LoadedPortals);
@@ -40,7 +40,7 @@ namespace VRWeb.Managers
 		public PersistentParams PersistentParams => m_PersistentParams;
 		public string HomeUrl => string.IsNullOrEmpty(m_HomeUrl) ? DEFAULT_HOME_URL : m_HomeUrl;
 		public string LastVisitedUrl => m_LastVisitedUrl;
-		
+
         public string CurrentVrmlUrl { get; set; }
 
         private void Awake()
@@ -197,10 +197,11 @@ namespace VRWeb.Managers
 			HandleError(400, $"Failed to load portal from url: \"{portal.Url}\"");
 		}
 
-		private void OnPortalLoaded(Portal portal, 
+		public void OnPortalLoaded(Portal portal = null, 
             SceneLoadedEvent.LoadStatus status=SceneLoadedEvent.LoadStatus.finishLoad)
 		{
-			Debug.Log("[PortalManager] Portal loaded: " + portal.Url);
+			if (portal != null)
+                Debug.Log("[PortalManager] Portal loaded: " + portal.Url);
 
 			m_OnLoadedEvent?.OnSceneLoaded( status );
 		}

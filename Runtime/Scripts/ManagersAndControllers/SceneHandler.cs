@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VRWeb.Creator;
+using VRWeb.Events;
 using VRWeb.Rig;
 using VRWeb.UI;
 
@@ -161,7 +162,13 @@ namespace VRWeb.Managers
 			}
 
 			SceneManager.SetActiveScene(scene);
-			SetPositionOnSceneLoad(scene);
+
+            SetPositionOnSceneLoad(scene);
+
+            PortalManager pm = HopperRoot.Get<PortalManager>();
+
+			if (pm != null)
+                pm.OnPortalLoaded();
 
 			ErrorDisplayer errorDisplayer = GameObject.FindAnyObjectByType<ErrorDisplayer>();
 			errorDisplayer?.SetErrorMessage(errorCode, errorMessage);

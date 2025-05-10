@@ -1,13 +1,15 @@
-#if !VRWEB_TOOLKIT_ONLY
 using UnityEngine;
 using VRWeb.Managers;
 using VRWeb.Rig;
+#if HOPPER
 using WorldBuilder.Core.Components;
+#endif
 
 namespace VRWeb.MouseActions
 {
 	public class ButtonClickHandler : HopperManagerMonoBehaviour<ButtonClickHandler>
     {
+#if HOPPER
         [SerializeField] private LayerMask m_ButtonLayerMask;
 
         private ButtonData m_PushedButton = null;
@@ -91,6 +93,6 @@ namespace VRWeb.MouseActions
 
             m_PushedButton = null;
         }
+#endif
     }
 }
-#endif

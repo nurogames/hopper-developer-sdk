@@ -17,6 +17,17 @@ namespace VRWeb.Avatar
         public float AvatarRotationSpeed = 8;
         public float AvatarCameraTiltSpeed = 8;
         public float AvatarSprintBoost = 2.0f;
+        public byte[] AvatarIconRaw = null;
+
+        public Sprite GetSprite()
+        {
+            Texture2D texture = new Texture2D(1, 1);
+            if (texture.LoadImage(AvatarIconRaw))
+                return Sprite.Create(texture, new Rect(0, 0, 1, 1), new Vector2(0.5f, 0.5f));
+
+            return null;
+        }
+
         public static AvatarSettings global = new AvatarSettings();
 
         private const string AVATAR_PREFIX = "avatar_";
@@ -90,6 +101,5 @@ namespace VRWeb.Avatar
         {
             return Path.Join(Application.persistentDataPath, "AvatarSettings", relPath);
         }
-
     }
 }

@@ -4,7 +4,9 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using VRWeb.Managers;
 using VRWeb.Rig;
+#if HOPPER
 using WorldBuilder.Core.Components;
+#endif
 
 namespace VRWeb.MouseActions
 {
@@ -171,6 +173,7 @@ namespace VRWeb.MouseActions
 
             UndoDisableCollisionsWhileGrabbed();
 
+#if HOPPER
             VisualObjectData visualObjectData = m_GrabbedInteractable.GetComponent<VisualObjectData>();
 
             if (visualObjectData != null)
@@ -181,6 +184,7 @@ namespace VRWeb.MouseActions
                 if (screenData != null)
                     screenData.OnSelectExited();
             }
+#endif
 
             m_GrabbedInteractable = null;
 
@@ -283,6 +287,7 @@ namespace VRWeb.MouseActions
 
             m_InputActionManager?.actionAssets[0].FindAction("Zoom").Disable();
 
+#if HOPPER
             VisualObjectData visualObjectData = m_GrabbedInteractable.GetComponent<VisualObjectData>();
 
             if (visualObjectData != null)
@@ -293,6 +298,7 @@ namespace VRWeb.MouseActions
                 if (screenData != null)
                     screenData.OnSelectEntered();
             }
+#endif
         }
 
         private void DisableCollisionsWhileGrabbed()

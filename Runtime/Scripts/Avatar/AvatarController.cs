@@ -16,9 +16,11 @@ using StarterAssets;
 using VRWeb.Events;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
-using VRWeb.MouseActions;
 using VRWeb.Rig;
 using VRWeb.User;
+#if HOPPER
+using VRWeb.MouseActions;
+#endif
 
 // Note: animations are called via the controller for both the character and capsule using m_Animator null checks
 
@@ -237,10 +239,12 @@ namespace VRWeb.Avatar
         private IEnumerator InithandlersCoroutine()
         {
             yield return new WaitWhile( () => HopperRoot.Get<TrackHistory>() == null );
+#if HOPPER
             yield return new WaitWhile( () => HopperRoot.Get<MouseHandler>() == null );
 
             HopperRoot.Get < MouseHandler >().onLeftMouseButtonDown.AddListener( OnTeleportMouseDown );
             HopperRoot.Get < MouseHandler >().onLeftMouseButtonUp.AddListener( OnTeleportMouseUp );
+#endif
         }
 
         private void OnDisable()
@@ -248,11 +252,13 @@ namespace VRWeb.Avatar
             StopAllCoroutines();
             m_StarterAssetsInput.onScrollWheel.RemoveListener( SetZoom );
 
+#if HOPPER
             if ( HopperRoot.Get < MouseHandler >() != null )
             {
                 HopperRoot.Get < MouseHandler >().onLeftMouseButtonDown.RemoveListener( OnTeleportMouseDown );
                 HopperRoot.Get < MouseHandler >().onLeftMouseButtonUp.RemoveListener( OnTeleportMouseUp );
             }
+#endif
         }
 
         private IEnumerator Start()
@@ -290,6 +296,7 @@ namespace VRWeb.Avatar
 
         private void CheckTeleporter()
         {
+#if HOPPER
             MouseTeleporter teleporter = HopperRoot.Get<MouseTeleporter>();
 
             if ( !m_IsTryingToTeleport )
@@ -310,6 +317,7 @@ namespace VRWeb.Avatar
             m_TeleportRingInstance.transform.position = teleporter.HoveredRaycastHit.point;
             Vector3 lookDir = HopperRoot.Get < MouseHandler >().ScreenToPointDirection;
             m_TeleportRingInstance.transform.forward = new Vector3( lookDir.x, 0, lookDir.z ).normalized;
+#endif
         }
 
         public void SetZoom(float zoom)
@@ -345,20 +353,21 @@ namespace VRWeb.Avatar
 
         private void OnTeleportMouseDown()
         {
+#if HOPPER
             MouseTeleporter teleporter = HopperRoot.Get < MouseTeleporter >();
 
             if ( teleporter == null || teleporter.HoveredFloor == null )
                 return;
 
-#if !VRWEB_TOOLKIT_ONLY
             CursorController cursorController = HopperRoot.Get < CursorController >();
 
             if ( cursorController.CurrentCursorMode != ICursorController.Modes.Default &&
                  cursorController.CurrentCursorMode != ICursorController.Modes.Teleport )
                 return;
-#endif
+
             m_IsTryingToTeleport = true;
             StartCoroutine( AnimateTeleportCoroutine()  );
+#endif
         }
 
         private void OnTeleportMouseUp()
@@ -371,6 +380,7 @@ namespace VRWeb.Avatar
 
         private IEnumerator AnimateTeleportCoroutine()
         {
+#if HOPPER
             if ( !m_Animator.enabled )
                 yield break;
 
@@ -433,6 +443,9 @@ namespace VRWeb.Avatar
             SetAnimationBool( m_AnimIDGrounded, true );
 
             m_IsTryingToTeleport = false;
+#else
+            yield break;    
+#endif
         }
 
         private bool SittingDown()
